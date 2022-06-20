@@ -1,6 +1,7 @@
-import React,{useCallback} from "react";
+import React,{useCallback,useEffect} from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
+import {io} from "socket.io-client"
 
 const SAVE_INTERVAL_MS = 2000;
 
@@ -19,6 +20,14 @@ const TOOLBAR_OPTIONS = [
 
 function TextEditor() {
   //const WrapperRef = useRef();
+
+  useEffect(() => { 
+    const socket = io("http://localhost:5010");
+
+    return () => { 
+      socket.disconnect();
+    }
+  });
 
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
