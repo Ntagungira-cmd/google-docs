@@ -56,3 +56,4 @@ function TextEditor() {
   return <div className="container" ref={wrapperRef}></div>;
 }
 export default TextEditor;
+
